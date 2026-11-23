@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas - Landing Page Biodata & Direktori 50 Alumni</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333333;
+            line-height: 1.6;
+            margin: 40px;
+        }
+
+        #judul-utama {
+            color: #1a365d;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2b6cb0;
+            border-bottom: 2px solid #cbd5e0;
+            padding-bottom: 5px;
+        }
+
+        .teks-fokus {
+            font-weight: bold;
+            color: #d69e2e;
+        }
+
+        ul {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            list-style-type: square;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        hr {
+            border: none;
+            height: 3px;
+            background-color: #cbd5e0;
+            margin: 20px 0;
+        }
+
+        /* Fitur Pencarian Alumni */
+        .search-wrapper {
+            margin: 16px 0 20px;
+        }
+
+        #searchAlumni {
+            width: 100%;
+            max-width: 450px;
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        #searchAlumni:focus {
+            border-color: #2b6cb0;
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+        }
+
+        .alumni-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 16px;
+        }
+
+        /* Efek Hover pada Profil Alumni */
+        .alumni-card {
+            background-color: #ffffff;
+            padding: 16px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+        }
+
+        .alumni-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.14);
+            border-color: #2b6cb0;
+            background-color: #f8fbff;
+        }
+
+        .alumni-card h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            color: #1a365d;
+        }
+
+        .alumni-card .jurusan-alumni {
+            margin: 0 0 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2b6cb0;
+        }
+
+        .alumni-card .angkatan-alumni {
+            margin: 0;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        #pesanKosong {
+            display: none;
+            color: #64748b;
+            font-style: italic;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="judul-utama">Landing Page Biodata Diri</h1>
+    
+    <hr>
+
+    <p style="text-align: center; font-style: italic;">Halo! Selamat datang di halaman web profil saya.</p>
+
+    <h2>Informasi Mahasiswa</h2>
+    <ul>
+        <li><b>Nama:</b> Auliya Nur Anisa</li>
+        <li><b>NIM:</b> 20250910045</li>
+        <li><b>Program Studi:</b> Sistem Informasi</li>
+        <li><b>Fakultas:</b> Fakultas Ilmu Komputer (FKOM)</li>
+        <li><b>Universitas:</b> Universitas Kuningan</li>
+    </ul>
+
+    <hr>
+
+    <h2>Tentang Saya</h2>
+    <p>Perkenalkan Nama saya Auliya Nur Anisa Mahasiswa Universitas Kuningan Jurusan Sistem Informasi Angkatan 2025<span class="teks-fokus"> yang sedang berproses menyelesaikan Tugas dari Mata kuliah </span> Web desain Modul 4.</p>
+
+    <hr>
+
+    <!-- Bagian Tugas: Profil Alumni (50 Data) + Efek Hover + Pencarian Nama/Jurusan -->
+    <h2>Profil Alumni (50 Data)</h2>
+
+    <div class="search-wrapper">
+        <input type="text" id="searchAlumni" placeholder="Cari alumni berdasarkan nama atau jurusan...">
+    </div>
+
+    <div class="alumni-list" id="alumniList"></div>
+
+    <p id="pesanKosong">Data alumni tidak ditemukan.</p>
+
+    <script>
+        const dataAlumni = [
+            { nama: "Rizky Pratama", jurusan: "Sistem Informasi", angkatan: 2021 },
+            { nama: "Ayu Lestari", jurusan: "Teknik Informatika", angkatan: 2020 },
+            { nama: "Dimas Saputra", jurusan: "Manajemen Informatika", angkatan: 2022 },
+            { nama: "Nadia Kusuma", jurusan: "Sistem Informasi", angkatan: 2019 },
+            { nama: "Fajar Nugraha", jurusan: "Teknik Informatika", angkatan: 2021 },
+            { nama: "Siti Rahmawati", jurusan: "Sistem Informasi", angkatan: 2022 },
+            { nama: "Bagas Aditya", jurusan: "Desain Komunikasi Visual", angkatan: 2020 },
+            { nama: "Putri Wulandari", jurusan: "Manajemen Informatika", angkatan: 2021 },
+            { nama: "Ilham Ramadhan", jurusan: "Sistem Informasi", angkatan: 2018 },
+            { nama: "Citra Kirana", jurusan: "Teknik Informatika", angkatan: 2022 },
+            { nama: "Kevin Mahendra", jurusan: "Desain Komunikasi Visual", angkatan: 2019 },
+            { nama: "Salma Azzahra", jurusan: "Sistem Informasi", angkatan: 2023 },
+            { nama: "Ardiansyah Putra", jurusan: "Teknik Informatika", angkatan: 2020 },
+            { nama: "Dewi Anggraini", jurusan: "Sistem Informasi", angkatan: 2021 },
+            { nama: "Hendra Wijaya", jurusan: "Manajemen Informatika", angkatan: 2019 },
+            { nama: "Maya Sari", jurusan: "Sistem Informasi", angkatan: 2022 },
+            { nama: "Taufik Hidayat", jurusan: "Teknik Informatika", angkatan: 2018 },
+            { nama: "Anisa Fitriani", jurusan: "Desain Komunikasi Visual", angkatan: 2023 },
+            { nama: "Yoga Permana", jurusan: "Sistem Informasi", angkatan: 2020 },
+            { nama: "Intan Permatasari", jurusan: "Teknik Informatika", angkatan: 2021 },
+            { nama: "Gilang Ramadhan", jurusan: "Manajemen Informatika", angkatan: 2022 },
+            { nama: "Laila Nurjanah", jurusan: "Sistem Informasi", angkatan: 2019 },
+            { nama: "Rian Kurniawan", jurusan: "Teknik Informatika", angkatan: 2023 },
+            { nama: "Dina Marlina", jurusan: "Desain Komunikasi Visual", angkatan: 2021 },
+            { nama: "Bima Sakti", jurusan: "Sistem Informasi", angkatan: 2018 },
+            { nama: "Vina Melinda", jurusan: "Manajemen Informatika", angkatan: 2020 },
+            { nama: "Zaki Mubarak", jurusan: "Teknik Informatika", angkatan: 2022 },
+            { nama: "Tari Amelia", jurusan: "Sistem Informasi", angkatan: 2023 },
+            { nama: "Reza Pahlevi", jurusan: "Desain Komunikasi Visual", angkatan: 2019 },
+            { nama: "Nabila Syifa", jurusan: "Teknik Informatika", angkatan: 2021 },
+            { nama: "Alif Firdaus", jurusan: "Sistem Informasi", angkatan: 2022 },
+            { nama: "Karina Putri", jurusan: "Manajemen Informatika", angkatan: 2018 },
+            { nama: "Wahyu Setiawan", jurusan: "Teknik Informatika", angkatan: 2020 },
+            { nama: "Mira Octavia", jurusan: "Sistem Informasi", angkatan: 2023 },
+            { nama: "Farhan Hakim", jurusan: "Desain Komunikasi Visual", angkatan: 2022 },
+            { nama: "Rani Maharani", jurusan: "Teknik Informatika", angkatan: 2019 },
+            { nama: "Daffa Maulana", jurusan: "Sistem Informasi", angkatan: 2021 },
+            { nama: "Yuliana Safitri", jurusan: "Manajemen Informatika", angkatan: 2023 },
+            { nama: "Eko Prasetyo", jurusan: "Teknik Informatika", angkatan: 2018 },
+            { nama: "Salsa Nabila", jurusan: "Sistem Informasi", angkatan: 2020 },
+            { nama: "Budi Santoso", jurusan: "Desain Komunikasi Visual", angkatan: 2021 },
+            { nama: "Aulia Rahma", jurusan: "Teknik Informatika", angkatan: 2022 },
+            { nama: "Rafi Ahmad", jurusan: "Sistem Informasi", angkatan: 2019 },
+            { nama: "Melani Putri", jurusan: "Manajemen Informatika", angkatan: 2021 },
+            { nama: "Galih Pratama", jurusan: "Teknik Informatika", angkatan: 2023 },
+            { nama: "Fika Amelia", jurusan: "Sistem Informasi", angkatan: 2020 },
+            { nama: "Naufal Zidan", jurusan: "Desain Komunikasi Visual", angkatan: 2022 },
+            { nama: "Tasya Kamila", jurusan: "Teknik Informatika", angkatan: 2018 },
+            { nama: "Iqbal Maulana", jurusan: "Sistem Informasi", angkatan: 2023 },
+            { nama: "Zahra Humaira", jurusan: "Manajemen Informatika", angkatan: 2022 }
+        ];
+
+        const alumniList = document.getElementById("alumniList");
+        const searchAlumni = document.getElementById("searchAlumni");
+        const pesanKosong = document.getElementById("pesanKosong");
+
+        // Render 50 kartu alumni
+        dataAlumni.forEach(function (alumni) {
+            const card = document.createElement("div");
+            card.className = "alumni-card";
+            card.innerHTML = `
+                <h3 class="nama-alumni">${alumni.nama}</h3>
+                <p class="jurusan-alumni">${alumni.jurusan}</p>
+                <p class="angkatan-alumni">Angkatan ${alumni.angkatan}</p>
+            `;
+            alumniList.appendChild(card);
+        });
+
+        const alumniCards = document.querySelectorAll(".alumni-card");
+
+        // Filter berdasarkan nama atau jurusan
+        searchAlumni.addEventListener("input", function () {
+            const kataKunci = searchAlumni.value.toLowerCase().trim();
+            let jumlahCocok = 0;
+
+            alumniCards.forEach(function (card) {
+                const nama = card.querySelector(".nama-alumni").textContent.toLowerCase();
+                const jurusan = card.querySelector(".jurusan-alumni").textContent.toLowerCase();
+
+                if (nama.includes(kataKunci) || jurusan.includes(kataKunci)) {
+                    card.style.display = "block";
+                    jumlahCocok++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            pesanKosong.style.display = jumlahCocok === 0 ? "block" : "none";
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post-Test Modul 04 - JavaScript</title>
+</head>
+<body>
+  <h2>Hasil Post-Test JavaScript (Buka Inspect -> Tab Console)</h2>
+
+  <script>
+    // ==========================================
+    // POST-TEST NO. 1: Perbedaan Scope (var, let, const)
+    // ==========================================
+    console.log("=== POST-TEST NO. 1: SCOPE VAR, LET, CONST ===");
+
+    function ujiScope() {
+      if (true) {
+        var denganVar = "Saya var (function scope)";
+        let denganLet = "Saya let (block scope)";
+        const denganConst = "Saya const (block scope)";
+
+        console.log("Di dalam blok if ->", denganVar, "|", denganLet, "|", denganConst);
+      }
+
+      // Berhasil diakses karena var bersifat function scope
+      console.log("Di luar blok if ->", denganVar);
+
+      // Baris di bawah ini akan error (ReferenceError) jika komentarnya dihapus:
+      // console.log(denganLet);
+      // console.log(denganConst);
+    }
+
+    ujiScope();
+
+    // ==========================================
+    // POST-TEST NO. 2: Fungsi Menghitung Kuadrat Angka 7
+    // ==========================================
+    console.log("\n=== POST-TEST NO. 2: FUNGSI KUADRAT ===");
+
+    function kuadrat(angka) {
+      return angka * angka;
+    }
+
+    const hasilKuadrat = kuadrat(7);
+    console.log("Hasil kuadrat dari 7 adalah:", hasilKuadrat);
+
+    // ==========================================
+    // POST-TEST NO. 3: Global Scope vs Local Scope
+    // ==========================================
+    console.log("\n=== POST-TEST NO. 3: GLOBAL VS LOCAL SCOPE ===");
+
+    // Variabel di Global Scope
+    let pesanGlobal = "Ini variabel dari Global Scope";
+
+    function contohLocalScope() {
+      // Variabel di Local Scope
+      let pesanLokal = "Ini variabel dari Local Scope";
+
+      console.log("Akses dari dalam fungsi:", pesanGlobal); // Berhasil
+      console.log("Akses dari dalam fungsi:", pesanLokal);  // Berhasil
+    }
+
+    contohLocalScope();
+
+    console.log("Akses dari global:", pesanGlobal); // Berhasil
+
+    // Variabel pesanLokal tidak bisa diakses di global scope (akan ReferenceError):
+    try {
+      console.log(pesanLokal);
+    } catch (error) {
+      console.log("Error saat akses pesanLokal di global scope:", error.message);
+    }
+  </script>
+</body>
+</html>
